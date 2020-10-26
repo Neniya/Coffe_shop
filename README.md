@@ -2,30 +2,41 @@
 
 ## Full Stack Nano - IAM Final Project
 
+## **Introduction**
 Udacity has decided to open a new digitally enabled cafe for students to order drinks, socialize, and study hard. But they need help setting up their menu experience.
+The goal of this project is:
 
-You have been called on to demonstrate your newly learned skills to create a full stack drink menu application. The application must:
 
-1) Display graphics representing the ratios of ingredients in each drink.
-2) Allow public users to view drink names and graphics.
-3) Allow the shop baristas to see the recipe information.
-4) Allow the shop managers to create new drinks and edit existing drinks.
+The application:
 
-## Tasks
+1) Displays graphics representing the ratios of ingredients in each drink.
+<img src="img/menu_user.png" width="250"/>
+2) Allows public users to view drink names and graphics.
 
-There are `@TODO` comments throughout the project. We recommend tackling the sections in order. Start by reading the READMEs in:
+3) Allows the shop baristas to see the recipe information.
+<img src="img/ingredients_barists.png" width="250"/>
+4) Allows the shop managers to create new drinks and edit existing drinks.
+<img src="img/menu_manager.png" width="250"/>
+<img src="img/Drink_editor.png" width="250"/>
+
+
+
+## **Getting Started**
+
+**Pre-requisites and Local Development**
+Developers using this project should already have Python3, pip, and node installed on their local machines.
+
+For detail setup directions read the READMEs in:
 
 1. [`./backend/`](./backend/README.md)
 2. [`./frontend/`](./frontend/README.md)
 
-## About the Stack
 
-We started the full stack application for you. It is desiged with some key functional areas:
+## About the Stack
 
 ### Backend
 
-The `./backend` directory contains a partially completed Flask server with a pre-written SQLAlchemy module to simplify your data needs. You will need to complete the required endpoints, configure, and integrate Auth0 for authentication.
-
+The `./backend` directory contains a completed Flask server.
 [View the README.md within ./backend for more details.](./backend/README.md)
 
 ### Frontend

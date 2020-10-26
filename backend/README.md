@@ -48,7 +48,6 @@ flask run --reload
 
 The `--reload` flag will detect file changes and restart the server automatically.
 
-## Tasks
 
 ### Setup Auth0
 
@@ -74,12 +73,227 @@ The `--reload` flag will detect file changes and restart the server automaticall
     - Sign into each account and make note of the JWT.
     - Import the postman collection `./starter_code/backend/udacity-fsnd-udaspicelatte.postman_collection.json`
     - Right-clicking the collection folder for barista and manager, navigate to the authorization tab, and including the JWT in the token field (you should have noted these JWTs).
-    - Run the collection and correct any errors.
-    - Export the collection overwriting the one we've included so that we have your proper JWTs during review!
+   
 
-### Implement The Server
 
-There are `@TODO` comments throughout the `./backend/src`. We recommend tackling the files in order and from top to bottom:
+## **API**
+API is represented in `./src/api.py`
 
-1. `./src/auth/auth.py`
-2. `./src/api.py`
+## Error handling
+Errors are returned as JSON objects in the following format:
+`{
+"success": False,
+"error": 404,
+"message": "resource not found"
+}`
+
+The API will return five error types when requests fail:
+* 400: Best Request
+* 404: Resouses not found
+* 422: Not Processable
+* 401: Unauthorized
+* 403: Forbidden
+
+## Endpoints
+
+* [GET '/drinks'](#get-drinks)
+* [GET '/drinks-detail](#get-drinks-detail)
+* [POST '/drinks'](#post-questions)
+* [PATCH '/drinks/&lt;nt:drink_id&gt;'](#patch-drinksintdrink_id)
+* [DELETE '/drinks/&lt;nt:drink_id&gt;'](#delete-drinksintdrink_id)
+
+
+### GET '/drinks'
+
+* General:
+    * Fetches a dictionary of drinks objects. 
+    * Request Arguments: None
+    * Returns: Status code 200, success value and  a list of drinks objects 
+
+* Sample in Postman(for role "Manager"): GET `{{host}}/drinks`
+
+```
+{
+    "drinks": [
+        {
+            "id": 1,
+            "recipe": [
+                {
+                    "color": "blue",
+                    "parts": 3
+                },
+                {
+                    "color": "red",
+                    "parts": 1
+                }
+            ],
+            "title": "Cherry water"
+        },
+        {
+            "id": 2,
+            "recipe": [
+                {
+                    "color": "blue",
+                    "parts": 1
+                }
+            ],
+            "title": "water"
+        },
+        {
+            "id": 3,
+            "recipe": [
+                {
+                    "color": "brown",
+                    "parts": 1
+                },
+                {
+                    "color": "blue",
+                    "parts": 3
+                },
+                {
+                    "color": "white",
+                    "parts": 1
+                }
+            ],
+            "title": "Tee"
+        }
+    ],
+    "success": true
+}
+```
+
+
+### GET '/drinks-detail'
+* General:
+    * Fetches a dictionary of drinks objects. 
+    * Request Arguments: None
+    * Returns: Status code 200, success value and  a list of drinks objects 
+
+* Sample in Postman(for role "Manager"): GET `{{host}}/drinks-detail`
+
+```
+{
+    "drinks": [
+        {
+            "id": 1,
+            "recipe": [
+                {
+                    "color": "blue",
+                    "name": "water",
+                    "parts": 3
+                },
+                {
+                    "color": "red",
+                    "name": "cherry syrup",
+                    "parts": 1
+                }
+            ],
+            "title": "Cherry water"
+        },
+        {
+            "id": 2,
+            "recipe": [
+                {
+                    "color": "blue",
+                    "name": "water",
+                    "parts": 1
+                }
+            ],
+            "title": "water"
+        },
+        {
+            "id": 3,
+            "recipe": [
+                {
+                    "color": "brown",
+                    "name": "Tee",
+                    "parts": 1
+                },
+                {
+                    "color": "blue",
+                    "name": "Hot water",
+                    "parts": 3
+                },
+                {
+                    "color": "white",
+                    "name": "Sugar",
+                    "parts": 1
+                }
+            ],
+            "title": "Tee"
+        }
+    ],
+    "success": true
+}
+```
+
+### POST '/drinks'
+
+* General:
+    * creates a new row in the drinks table. 
+    * Request Arguments: None
+    * Returns: Status code 200, success value and  an array containing only the newly created drink
+
+* Sample in Postman(for role "Manager"): POST `{{host}}/drinks`
+```
+{
+    "drinks": [
+        {
+            "id": 1,
+            "recipe": [
+                {
+                    "color": "blue",
+                    "name": "Water",
+                    "parts": 1
+                }
+            ],
+            "title": "Water3"
+        }
+    ],
+    "success": true
+}
+```
+
+
+### PATCH '/drinks/<int:drink_id>'
+* General:
+    * Updates the question of the given ID if it exists.. 
+    * Request Arguments: drink_id
+    * Returns: Status code 200, success value and an array containing only the updated drink 
+
+* Sample in Postman(for role "Manager"): PATCH `{{host}}/drinks/1`
+
+```
+{
+    "drinks": [
+        {
+            "id": 1,
+            "recipe": [
+                {
+                    "color": "blue",
+                    "name": "Water",
+                    "parts": 1
+                }
+            ],
+            "title": "Water5"
+        }
+    ],
+    "success": true
+}
+```
+
+
+### DELETE '/drinks/<int:drink_id>'
+* General:
+    * Deletes the question of the given ID if it exists.. 
+    * Request Arguments: drink_id
+    * Returns: Status code 200, success value and an id of the deleted record 
+
+* Sample in Postman(for role "Manager"): DELETE `{{host}}/drinks/1`
+
+```
+{
+    "delete": "1",
+    "success": true
+}
+```
